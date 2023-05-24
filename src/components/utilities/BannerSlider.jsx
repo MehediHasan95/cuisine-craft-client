@@ -1,7 +1,4 @@
-import Slider from "react-slick";
-
 const BannerSlider = ({ data }) => {
-  console.log(data);
   return (
     <>
       <div className="flex justify-center bg-base-100 text-erieBlack p-10">

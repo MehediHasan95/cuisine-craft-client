@@ -1,6 +1,9 @@
+import { Link, NavLink } from "react-router-dom";
+import logo from "../../assets/logo.png";
+
 const Navbar = () => {
   return (
-    <div className="navbar bg-erieBlack text-white lg:px-72 uppercase">
+    <div className="navbar bg-erieBlack text-white lg:px-72">
       <div className="navbar-start">
         <div className="dropdown">
           <label tabIndex={0} className="btn btn-ghost lg:hidden">
@@ -40,29 +43,95 @@ const Navbar = () => {
             </li>
           </ul>
         </div>
-        <a className="btn btn-ghost normal-case text-xl">MasterChef</a>
+        <Link to="/" className="px-2 text-3xl flex items-center">
+          <img src={logo} alt="logo" className="w-8" />
+          <span className="font-lobster">
+            Master<span className="text-yellowOrange">Chef</span>
+          </span>
+        </Link>
       </div>
-      <div className="navbar-center hidden lg:flex">
-        <ul className="menu menu-horizontal px-1">
+      <div className="navbar-center hidden lg:flex uppercase">
+        <ul className="menu-horizontal">
           <li>
-            <a>Home</a>
+            <NavLink to="/">
+              {({ isActive }) => (
+                <span
+                  className={
+                    isActive
+                      ? "bg-yellowOrange px-4 py-2 rounded-md cursor-pointer"
+                      : "px-4 py-2 rounded-md cursor-pointer"
+                  }
+                >
+                  Home
+                </span>
+              )}
+            </NavLink>
+          </li>
+
+          <li>
+            <NavLink to="/chef">
+              {({ isActive }) => (
+                <span
+                  className={
+                    isActive
+                      ? "bg-yellowOrange px-4 py-2 rounded-md cursor-pointer"
+                      : "px-4 py-2 rounded-md cursor-pointer"
+                  }
+                >
+                  Chef
+                </span>
+              )}
+            </NavLink>
           </li>
           <li>
-            <a>Chef</a>
+            <NavLink to="/blog">
+              {({ isActive }) => (
+                <span
+                  className={
+                    isActive
+                      ? "bg-yellowOrange px-4 py-2 rounded-md cursor-pointer"
+                      : "px-4 py-2 rounded-md cursor-pointer"
+                  }
+                >
+                  Blog
+                </span>
+              )}
+            </NavLink>
           </li>
           <li>
-            <a>Blog</a>
+            <NavLink to="/about">
+              {({ isActive }) => (
+                <span
+                  className={
+                    isActive
+                      ? "bg-yellowOrange px-4 py-2 rounded-md cursor-pointer"
+                      : "px-4 py-2 rounded-md cursor-pointer"
+                  }
+                >
+                  About
+                </span>
+              )}
+            </NavLink>
           </li>
           <li>
-            <a>About</a>
-          </li>
-          <li>
-            <a>Contact</a>
+            <NavLink to="/contact">
+              {({ isActive }) => (
+                <span
+                  className={
+                    isActive
+                      ? "bg-yellowOrange px-4 py-2 rounded-md cursor-pointer"
+                      : "px-4 py-2 rounded-md cursor-pointer"
+                  }
+                >
+                  Contact
+                </span>
+              )}
+            </NavLink>
           </li>
         </ul>
       </div>
       <div className="navbar-end">
-        <a className="btn btn-ghost">Login</a>
+        <button className="px-2">LOGIN</button>
       </div>
     </div>
   );

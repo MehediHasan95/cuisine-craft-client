@@ -6,6 +6,9 @@ export default {
   },
   theme: {
     extend: {
+      fontFamily: {
+        lobster: ["Lobster", "cursive"],
+      },
       colors: {
         yellowOrange: "#FD9800",
         erieBlack: "#1B1B1B",
