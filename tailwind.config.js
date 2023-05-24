@@ -5,7 +5,16 @@ export default {
     themes: false,
   },
   theme: {
-    extend: {},
+    extend: {
+      colors: {
+        yellowOrange: "#FD9800",
+        erieBlack: "#1B1B1B",
+      },
+      backgroundColor: {
+        yellowOrange: "#FD9800",
+        erieBlack: "#1B1B1B",
+      },
+    },
   },
   plugins: [require("daisyui")],
 };
