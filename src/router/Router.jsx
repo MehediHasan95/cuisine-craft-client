@@ -4,11 +4,13 @@ import Home from "../components/pages/Home";
 import About from "../components/pages/About";
 import Contact from "../components/pages/Contact";
 import Blog from "../components/pages/Blog";
+import ErrorPage from "../components/utilities/ErrorPage";
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <Root />,
+    // errorElement: <ErrorPage />,
     children: [
       {
         path: "/",
@@ -25,6 +27,10 @@ const router = createBrowserRouter([
       {
         path: "contact",
         element: <Contact />,
+      },
+      {
+        path: "*",
+        element: <ErrorPage />,
       },
     ],
   },

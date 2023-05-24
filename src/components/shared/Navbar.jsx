@@ -24,29 +24,75 @@ const Navbar = () => {
           </label>
           <ul
             tabIndex={0}
-            className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-erieBlack rounded-box w-52"
+            className="menu-compact dropdown-content mt-3 p-2 shadow bg-erieBlack rounded-md w-96 uppercase"
           >
             <li>
-              <a>Home</a>
+              <NavLink to="/">
+                {({ isActive }) => (
+                  <p
+                    className={
+                      isActive
+                        ? "bg-yellowOrange px-4 py-2 rounded-md cursor-pointer"
+                        : "px-4 py-2 rounded-md cursor-pointer"
+                    }
+                  >
+                    Home
+                  </p>
+                )}
+              </NavLink>
+            </li>
+
+            <li>
+              <NavLink to="/about">
+                {({ isActive }) => (
+                  <p
+                    className={
+                      isActive
+                        ? "bg-yellowOrange px-4 py-2 rounded-md cursor-pointer"
+                        : "px-4 py-2 rounded-md cursor-pointer"
+                    }
+                  >
+                    About
+                  </p>
+                )}
+              </NavLink>
             </li>
             <li>
-              <a>Chef</a>
+              <NavLink to="/blog">
+                {({ isActive }) => (
+                  <p
+                    className={
+                      isActive
+                        ? "bg-yellowOrange px-4 py-2 rounded-md cursor-pointer"
+                        : "px-4 py-2 rounded-md cursor-pointer"
+                    }
+                  >
+                    Blog
+                  </p>
+                )}
+              </NavLink>
             </li>
             <li>
-              <a>Blog</a>
-            </li>
-            <li>
-              <a>About</a>
-            </li>
-            <li>
-              <a>Contact</a>
+              <NavLink to="/contact">
+                {({ isActive }) => (
+                  <p
+                    className={
+                      isActive
+                        ? "bg-yellowOrange px-4 py-2 rounded-md cursor-pointer"
+                        : "px-4 py-2 rounded-md cursor-pointer"
+                    }
+                  >
+                    Contact
+                  </p>
+                )}
+              </NavLink>
             </li>
           </ul>
         </div>
         <Link to="/" className="px-2 text-3xl flex items-center">
           <img src={logo} alt="logo" className="w-8" />
-          <span className="font-lobster">
-            Master<span className="text-yellowOrange">Chef</span>
+          <span className="font-lobster font-bold">
+            Cuisine<span className="text-yellowOrange">Craft</span>
           </span>
         </Link>
       </div>
@@ -67,7 +113,6 @@ const Navbar = () => {
               )}
             </NavLink>
           </li>
-
           <li>
             <NavLink to="/chef">
               {({ isActive }) => (

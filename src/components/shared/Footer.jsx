@@ -8,8 +8,8 @@ const Footer = () => {
         <div>
           <Link to="/" className="px-2 text-3xl flex items-center">
             <img src={logo} alt="logo" className="w-8" />
-            <span className="font-lobster">
-              Master<span className="text-yellowOrange">Chef</span>
+            <span className="font-lobster font-bold">
+              Cuisine<span className="text-yellowOrange">Craft</span>
             </span>
           </Link>
 
