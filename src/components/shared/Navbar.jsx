@@ -203,7 +203,7 @@ const Navbar = () => {
         )}
         {user && (
           <div
-            className="avatar tooltip tooltip-bottom tooltip-success"
+            className="avatar tooltip tooltip-bottom tooltip-warning"
             data-tip={user && user?.displayName}
           >
             <div className="w-10 rounded-full">

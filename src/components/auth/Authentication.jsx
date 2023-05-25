@@ -14,6 +14,7 @@ const Authentication = () => {
     signInWithGithub,
     createUser,
     updateUserDisplayName,
+    userSignIn,
   } = useContext(AuthContext);
   const [toggle, setToggle] = useState(false);
   const [showPass, setShowPass] = useState(false);
@@ -66,7 +67,15 @@ const Authentication = () => {
           setLoader(false);
         });
     } else {
-      console.log("login");
+      userSignIn(email, password)
+        .then(() => {
+          navigate(from, { replace: true });
+          setLoader(false);
+        })
+        .catch((error) => {
+          setErrMsg(error.code);
+          setLoader(false);
+        });
     }
   };
 
