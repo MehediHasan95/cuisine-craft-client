@@ -81,10 +81,20 @@ const ClientReview = () => {
                   </span>
                   {e.review}
                 </p>
-                <p>
-                  <FontAwesomeIcon icon={faStar} />
-                  <FontAwesomeIcon icon={faStar} />
-                  <FontAwesomeIcon icon={faStar} />
+
+                <p className="my-3">
+                  <FontAwesomeIcon
+                    icon={faStar}
+                    className="text-yellowOrange mx-2"
+                  />
+                  <FontAwesomeIcon
+                    icon={faStar}
+                    className="text-yellowOrange mx-2"
+                  />
+                  <FontAwesomeIcon
+                    icon={faStar}
+                    className="text-yellowOrange mx-2"
+                  />
                 </p>
               </div>
             </div>

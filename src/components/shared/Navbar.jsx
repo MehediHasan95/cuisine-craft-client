@@ -175,8 +175,10 @@ const Navbar = () => {
           </li>
         </ul>
       </div>
-      <div className="navbar-end">
-        <button className="px-2">LOGIN</button>
+      <div className="navbar-end uppercase">
+        <Link to="/authentication" className="px-2">
+          Login
+        </Link>
       </div>
     </div>
   );
