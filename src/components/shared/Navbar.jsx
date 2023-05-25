@@ -1,7 +1,23 @@
-import { Link, NavLink } from "react-router-dom";
+import { Link, NavLink, useLocation, useNavigate } from "react-router-dom";
 import logo from "../../assets/logo.png";
+import { useContext } from "react";
+import { AuthContext } from "../../provider/AuthProvider";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faSignOut } from "@fortawesome/free-solid-svg-icons";
 
 const Navbar = () => {
+  const { user, logOut } = useContext(AuthContext);
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  const from = location?.state?.from?.pathname || "/";
+
+  const handleLogOut = () => {
+    logOut().then(() => {
+      navigate(from, { replace: true });
+    });
+  };
+
   return (
     <div className="navbar bg-erieBlack text-white lg:px-72">
       <div className="navbar-start">
@@ -176,9 +192,25 @@ const Navbar = () => {
         </ul>
       </div>
       <div className="navbar-end uppercase">
-        <Link to="/authentication" className="px-2">
-          Login
-        </Link>
+        {user ? (
+          <button onClick={handleLogOut} className="mx-5">
+            Sign Out <FontAwesomeIcon icon={faSignOut} />
+          </button>
+        ) : (
+          <Link to="/authentication" className="px-2">
+            Login
+          </Link>
+        )}
+        {user && (
+          <div
+            className="avatar tooltip tooltip-bottom tooltip-success"
+            data-tip={user && user?.displayName}
+          >
+            <div className="w-10 rounded-full">
+              <img src={user && user?.photoURL} alt="picture" />
+            </div>
+          </div>
+        )}
       </div>
     </div>
   );
