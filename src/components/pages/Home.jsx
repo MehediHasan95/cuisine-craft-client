@@ -1,9 +1,15 @@
+import ChefProfile from "./ChefProfile";
+import ClientReview from "./ClientReview";
+import OutMenu from "./OurMenu";
 import Carousel from "./carousel";
 
 const Home = () => {
   return (
     <div>
       <Carousel />
+      <OutMenu />
+      <ChefProfile />
+      <ClientReview />
     </div>
   );
 };
