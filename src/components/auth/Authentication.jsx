@@ -1,14 +1,22 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { Link } from "react-router-dom";
 import logo from "../../assets/logo.png";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
 import google from "../../assets/google.png";
 import github from "../../assets/github.png";
+import { AuthContext } from "../../provider/AuthProvider";
 
 const Authentication = () => {
+  const { signInWithGoogle } = useContext(AuthContext);
   const [toggle, setToggle] = useState(false);
   const [showPass, setShowPass] = useState(false);
+
+  const handleGoogleSignIn = () => {
+    signInWithGoogle()
+      .then((result) => console.log(result))
+      .catch((error) => console.log(error));
+  };
 
   return (
     <div className="min-h-[75vh] grid place-items-center">
@@ -74,7 +82,10 @@ const Authentication = () => {
         </p>
         <p className="text-center my-3 text-gray-400">- or continue with -</p>
         <div className="flex justify-center">
-          <button className="hover:bg-base-300 p-2 rounded-md flex items-center mx-3">
+          <button
+            onClick={handleGoogleSignIn}
+            className="hover:bg-base-300 p-2 rounded-md flex items-center mx-3"
+          >
             <img src={google} alt="google" className="w-8 me-2" />
             <span>Google</span>
           </button>
