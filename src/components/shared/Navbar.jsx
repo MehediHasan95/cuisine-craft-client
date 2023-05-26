@@ -130,7 +130,7 @@ const Navbar = () => {
             </NavLink>
           </li>
           <li>
-            <NavLink to="/chef">
+            <NavLink to="/allchef">
               {({ isActive }) => (
                 <span
                   className={
@@ -139,7 +139,7 @@ const Navbar = () => {
                       : "px-4 py-2 rounded-md cursor-pointer"
                   }
                 >
-                  Chef
+                  All Chef
                 </span>
               )}
             </NavLink>
@@ -192,15 +192,6 @@ const Navbar = () => {
         </ul>
       </div>
       <div className="navbar-end uppercase">
-        {user ? (
-          <button onClick={handleLogOut} className="mx-5">
-            Sign Out <FontAwesomeIcon icon={faSignOut} />
-          </button>
-        ) : (
-          <Link to="/authentication" className="px-2">
-            Login
-          </Link>
-        )}
         {user && (
           <div
             className="avatar tooltip tooltip-bottom tooltip-warning"
@@ -210,6 +201,15 @@ const Navbar = () => {
               <img src={user && user?.photoURL} alt="picture" />
             </div>
           </div>
+        )}
+        {user ? (
+          <button onClick={handleLogOut} className="ms-2">
+            <FontAwesomeIcon icon={faSignOut} />
+          </button>
+        ) : (
+          <Link to="/authentication" className="px-2">
+            Login
+          </Link>
         )}
       </div>
     </div>
