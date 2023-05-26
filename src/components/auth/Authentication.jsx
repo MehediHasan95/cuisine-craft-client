@@ -89,7 +89,7 @@ const Authentication = () => {
           >
             <img src={logo} alt="logo" className="w-8" />
             <span className="font-lobster font-bold">
-              Cuisine<span className="text-yellowOrange">Craft</span>
+              Cuisine<span className="text-alabamaCrimson">Craft</span>
             </span>
           </Link>
 
@@ -98,7 +98,7 @@ const Authentication = () => {
               type="text"
               pattern="[a-z A-Z]{0,}"
               ref={displayNameField}
-              className="w-full p-3 mb-2 rounded-md border-none outline-none focus:outline-yellowOrange bg-base-300"
+              className="w-full p-3 mb-2 rounded-md border-none outline-none focus:outline-alabamaCrimson bg-base-300"
               placeholder="Name"
               required
             />
@@ -107,7 +107,7 @@ const Authentication = () => {
             type="email"
             pattern="[\S+@\S+\.\S+]{0,}"
             ref={emailField}
-            className="w-full p-3 mb-2 rounded-md border-none outline-none focus:outline-yellowOrange bg-base-300"
+            className="w-full p-3 mb-2 rounded-md border-none outline-none focus:outline-alabamaCrimson bg-base-300"
             placeholder="Email ID"
             required
           />
@@ -116,26 +116,26 @@ const Authentication = () => {
               type={showPass ? "text" : "password"}
               pattern="[a-zA-Z0-9]{6,}"
               ref={paasswordField}
-              className="w-full p-3 mb-2 rounded-md border-none outline-none focus:outline-yellowOrange bg-base-300"
+              className="w-full p-3 mb-2 rounded-md border-none outline-none focus:outline-alabamaCrimson bg-base-300"
               placeholder="Password"
               required
             />
             <FontAwesomeIcon
               onClick={() => setShowPass(!showPass)}
               icon={showPass ? faEye : faEyeSlash}
-              className="text-xl absolute top-3 right-3 cursor-pointer text-yellowOrange"
+              className="text-xl absolute top-3 right-3 cursor-pointer text-alabamaCrimson"
             />
           </div>
           {toggle && (
             <input
               type="text"
               ref={photoURLField}
-              className="w-full p-3 mb-2 rounded-md border-none outline-none focus:outline-yellowOrange bg-base-300"
+              className="w-full p-3 mb-2 rounded-md border-none outline-none focus:outline-alabamaCrimson bg-base-300"
               placeholder="PhotoURL"
               required
             />
           )}
-          <button className="w-full flex justify-center p-3 bg-yellowOrange text-white uppercase rounded-md border-none outline-none">
+          <button className="w-full flex justify-center p-3 bg-alabamaCrimson text-white uppercase rounded-md border-none outline-none">
             {toggle ? (
               <>
                 {loader ? (
@@ -176,7 +176,7 @@ const Authentication = () => {
           {toggle ? "Already have an account" : "Don't have an account"}
           <button
             onClick={() => setToggle(!toggle)}
-            className="ms-2 text-yellowOrange underline hover:font-bold"
+            className="ms-2 text-alabamaCrimson underline hover:font-bold"
           >
             {toggle ? "Login" : "Register"}
           </button>

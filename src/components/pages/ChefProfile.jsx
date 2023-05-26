@@ -15,7 +15,7 @@ const ChefProfile = () => {
   return (
     <div className="px-2 lg:px-72 my-32">
       <h1 className="text-4xl font-bold uppercase text-center mb-10">
-        Our Best <span className="text-yellowOrange">Chef</span>
+        Our Best <span className="text-alabamaCrimson">Chef</span>
       </h1>
       {chef.length > 0 ? (
         <div className="grid gap-5 grid-cols-1 lg:grid-cols-3">
@@ -29,24 +29,24 @@ const ChefProfile = () => {
                 />
               </div>
               <div className="p-5">
-                <h1 className="text-xl font-bold text-yellowOrange">
+                <h1 className="text-xl font-bold text-alabamaCrimson">
                   {e.name}
                 </h1>
-                <p className="my-2 italic">{e.experience}</p>
+                <p className="my-2">{e.experience}</p>
                 <div className="flex justify-between">
                   <div>
                     <FontAwesomeIcon
                       icon={faUtensils}
-                      className="text-yellowOrange"
+                      className="text-alabamaCrimson"
                     />
-                    <span className="mx-2 text-yellowOrange">Recipes:</span>
+                    <span className="mx-2 text-alabamaCrimson">Recipes:</span>
                     <span>{e.number_of_recipes} (items)</span>
                   </div>
                   <div>
                     <span>
                       <FontAwesomeIcon icon={faHeart} className="" /> Favorite
                     </span>
-                    <span className="text-yellowOrange">
+                    <span className="text-alabamaCrimson">
                       <FontAwesomeIcon icon={faThumbsUp} className="mx-2" />
                       {e.likes.length > 4 ? `${e.likes.slice(0, 2)}K` : e.likes}
                     </span>
@@ -54,7 +54,7 @@ const ChefProfile = () => {
                 </div>
               </div>
               <Link to={`/v1/chefdetails/${e.id}`}>
-                <button className="bg-yellowOrange w-full border-none p-2 text-white">
+                <button className="bg-alabamaCrimson w-full border-none p-2 text-white">
                   View Recipes
                 </button>
               </Link>
@@ -75,7 +75,7 @@ const ChefProfile = () => {
           />
         </div>
       )}
-      <p className="text-right my-5 text-yellowOrange hover:underline font-bold">
+      <p className="text-right my-5 text-alabamaCrimson hover:underline font-bold">
         <Link to="/allchef">See more</Link>
       </p>
     </div>

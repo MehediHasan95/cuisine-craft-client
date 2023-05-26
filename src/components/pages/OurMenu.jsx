@@ -9,7 +9,7 @@ const OutMenu = () => {
   return (
     <div className="px-2 lg:px-72 my-32">
       <h1 className="text-4xl font-bold uppercase text-center mb-10">
-        Our <span className="text-yellowOrange">Menu</span>
+        Our <span className="text-alabamaCrimson">Menu</span>
       </h1>
       <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-4">
         <div className="col-span-1 bg-base-100 p-5 rounded-md text-center">

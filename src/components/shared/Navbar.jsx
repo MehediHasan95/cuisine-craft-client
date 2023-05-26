@@ -3,7 +3,7 @@ import logo from "../../assets/logo.png";
 import { useContext } from "react";
 import { AuthContext } from "../../provider/AuthProvider";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faSignOut } from "@fortawesome/free-solid-svg-icons";
+import { faSignOut, faSun } from "@fortawesome/free-solid-svg-icons";
 
 const Navbar = () => {
   const { user, logOut } = useContext(AuthContext);
@@ -48,7 +48,7 @@ const Navbar = () => {
                   <p
                     className={
                       isActive
-                        ? "bg-yellowOrange px-4 py-2 rounded-md cursor-pointer"
+                        ? "bg-alabamaCrimson px-4 py-2 rounded-md cursor-pointer"
                         : "px-4 py-2 rounded-md cursor-pointer"
                     }
                   >
@@ -64,7 +64,7 @@ const Navbar = () => {
                   <p
                     className={
                       isActive
-                        ? "bg-yellowOrange px-4 py-2 rounded-md cursor-pointer"
+                        ? "bg-alabamaCrimson px-4 py-2 rounded-md cursor-pointer"
                         : "px-4 py-2 rounded-md cursor-pointer"
                     }
                   >
@@ -79,7 +79,7 @@ const Navbar = () => {
                   <p
                     className={
                       isActive
-                        ? "bg-yellowOrange px-4 py-2 rounded-md cursor-pointer"
+                        ? "bg-alabamaCrimson px-4 py-2 rounded-md cursor-pointer"
                         : "px-4 py-2 rounded-md cursor-pointer"
                     }
                   >
@@ -94,7 +94,7 @@ const Navbar = () => {
                   <p
                     className={
                       isActive
-                        ? "bg-yellowOrange px-4 py-2 rounded-md cursor-pointer"
+                        ? "bg-alabamaCrimson px-4 py-2 rounded-md cursor-pointer"
                         : "px-4 py-2 rounded-md cursor-pointer"
                     }
                   >
@@ -103,12 +103,25 @@ const Navbar = () => {
                 )}
               </NavLink>
             </li>
+            <li>
+              {user ? (
+                <button onClick={handleLogOut} className="px-4 py-2 uppercase">
+                  <span className="me-1">Sign Out</span>
+                </button>
+              ) : (
+                <Link to="/authentication">
+                  <button className="px-4 py-2 uppercase">
+                    <span className="me-1">Login</span>
+                  </button>
+                </Link>
+              )}
+            </li>
           </ul>
         </div>
         <Link to="/" className="px-2 text-3xl flex items-center">
           <img src={logo} alt="logo" className="w-8" />
           <span className="font-lobster font-bold">
-            Cuisine<span className="text-yellowOrange">Craft</span>
+            Cuisine<span className="text-alabamaCrimson">Craft</span>
           </span>
         </Link>
       </div>
@@ -120,7 +133,7 @@ const Navbar = () => {
                 <span
                   className={
                     isActive
-                      ? "bg-yellowOrange px-4 py-2 rounded-md cursor-pointer"
+                      ? "bg-alabamaCrimson px-4 py-2 rounded-md cursor-pointer"
                       : "px-4 py-2 rounded-md cursor-pointer"
                   }
                 >
@@ -135,7 +148,7 @@ const Navbar = () => {
                 <span
                   className={
                     isActive
-                      ? "bg-yellowOrange px-4 py-2 rounded-md cursor-pointer"
+                      ? "bg-alabamaCrimson px-4 py-2 rounded-md cursor-pointer"
                       : "px-4 py-2 rounded-md cursor-pointer"
                   }
                 >
@@ -150,7 +163,7 @@ const Navbar = () => {
                 <span
                   className={
                     isActive
-                      ? "bg-yellowOrange px-4 py-2 rounded-md cursor-pointer"
+                      ? "bg-alabamaCrimson px-4 py-2 rounded-md cursor-pointer"
                       : "px-4 py-2 rounded-md cursor-pointer"
                   }
                 >
@@ -165,7 +178,7 @@ const Navbar = () => {
                 <span
                   className={
                     isActive
-                      ? "bg-yellowOrange px-4 py-2 rounded-md cursor-pointer"
+                      ? "bg-alabamaCrimson px-4 py-2 rounded-md cursor-pointer"
                       : "px-4 py-2 rounded-md cursor-pointer"
                   }
                 >
@@ -180,7 +193,7 @@ const Navbar = () => {
                 <span
                   className={
                     isActive
-                      ? "bg-yellowOrange px-4 py-2 rounded-md cursor-pointer"
+                      ? "bg-alabamaCrimson px-4 py-2 rounded-md cursor-pointer"
                       : "px-4 py-2 rounded-md cursor-pointer"
                   }
                 >
@@ -192,6 +205,13 @@ const Navbar = () => {
         </ul>
       </div>
       <div className="navbar-end uppercase">
+        <p>
+          <FontAwesomeIcon
+            icon={faSun}
+            className="text-xl cursor-pointer me-5"
+          />
+        </p>
+
         {user && (
           <div
             className="avatar tooltip tooltip-bottom tooltip-warning"
@@ -202,15 +222,20 @@ const Navbar = () => {
             </div>
           </div>
         )}
-        {user ? (
-          <button onClick={handleLogOut} className="ms-2">
-            <FontAwesomeIcon icon={faSignOut} />
-          </button>
-        ) : (
-          <Link to="/authentication" className="px-2">
-            Login
-          </Link>
-        )}
+        <div className="hidden lg:block">
+          {user ? (
+            <button
+              onClick={handleLogOut}
+              className="ms-5 uppercase hover:text-alabamaCrimson hover:font-bold"
+            >
+              <span className="me-1">Sign out</span>
+            </button>
+          ) : (
+            <Link to="/authentication" className="px-2">
+              Login
+            </Link>
+          )}
+        </div>
       </div>
     </div>
   );

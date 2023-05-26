@@ -24,22 +24,24 @@ const AllChef = () => {
               />
             </div>
             <div className="p-5 h-52">
-              <h1 className="text-xl font-bold text-yellowOrange">{e.name}</h1>
-              <p className="my-2 italic">{e.experience}</p>
+              <h1 className="text-xl font-bold text-alabamaCrimson">
+                {e.name}
+              </h1>
+              <p className="my-2">{e.experience}</p>
               <div className="flex justify-between">
                 <div>
                   <FontAwesomeIcon
                     icon={faUtensils}
-                    className="text-yellowOrange"
+                    className="text-alabamaCrimson"
                   />
-                  <span className="mx-2 text-yellowOrange">Recipes:</span>
+                  <span className="mx-2 text-alabamaCrimson">Recipes:</span>
                   <span>{e.number_of_recipes} (items)</span>
                 </div>
                 <div>
                   <span>
                     <FontAwesomeIcon icon={faHeart} className="" /> Favorite
                   </span>
-                  <span className="text-yellowOrange">
+                  <span className="text-alabamaCrimson">
                     <FontAwesomeIcon icon={faThumbsUp} className="mx-2" />
                     {e.likes.length > 4 ? `${e.likes.slice(0, 2)}K` : e.likes}
                   </span>
@@ -47,7 +49,7 @@ const AllChef = () => {
               </div>
             </div>
             <Link to={`/v1/chefdetails/${e.id}`}>
-              <button className="bg-yellowOrange w-full border-none p-2 text-white">
+              <button className="bg-alabamaCrimson w-full border-none p-2 text-white">
                 View Recipes
               </button>
             </Link>

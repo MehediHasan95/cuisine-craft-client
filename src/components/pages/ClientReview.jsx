@@ -68,7 +68,7 @@ const ClientReview = () => {
   return (
     <div className="px-2 lg:px-72 my-32">
       <h1 className="text-4xl font-bold uppercase text-center mb-10">
-        Our Client <span className="text-yellowOrange">Review</span>
+        Our Client <span className="text-alabamaCrimson">Review</span>
       </h1>
       <div>
         <Slider {...settings}>
@@ -76,7 +76,7 @@ const ClientReview = () => {
             <div key={index}>
               <div className="bg-base-100 p-8 mx-5 rounded-xl text-center">
                 <p>
-                  <span className="font-bold text-yellowOrange">
+                  <span className="font-bold text-alabamaCrimson">
                     {e.name} -{" "}
                   </span>
                   {e.review}
@@ -85,15 +85,15 @@ const ClientReview = () => {
                 <p className="my-3">
                   <FontAwesomeIcon
                     icon={faStar}
-                    className="text-yellowOrange mx-2"
+                    className="text-alabamaCrimson mx-2"
                   />
                   <FontAwesomeIcon
                     icon={faStar}
-                    className="text-yellowOrange mx-2"
+                    className="text-alabamaCrimson mx-2"
                   />
                   <FontAwesomeIcon
                     icon={faStar}
-                    className="text-yellowOrange mx-2"
+                    className="text-alabamaCrimson mx-2"
                   />
                 </p>
               </div>
