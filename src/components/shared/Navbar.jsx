@@ -134,7 +134,7 @@ const Navbar = () => {
                   className={
                     isActive
                       ? "bg-alabamaCrimson px-4 py-2 rounded-md cursor-pointer"
-                      : "px-4 py-2 rounded-md cursor-pointer"
+                      : "px-4 py-2 rounded-md cursor-pointer hover:text-alabamaCrimson"
                   }
                 >
                   Home
@@ -149,7 +149,7 @@ const Navbar = () => {
                   className={
                     isActive
                       ? "bg-alabamaCrimson px-4 py-2 rounded-md cursor-pointer"
-                      : "px-4 py-2 rounded-md cursor-pointer"
+                      : "px-4 py-2 rounded-md cursor-pointer hover:text-alabamaCrimson"
                   }
                 >
                   All Chef
@@ -164,7 +164,7 @@ const Navbar = () => {
                   className={
                     isActive
                       ? "bg-alabamaCrimson px-4 py-2 rounded-md cursor-pointer"
-                      : "px-4 py-2 rounded-md cursor-pointer"
+                      : "px-4 py-2 rounded-md cursor-pointer hover:text-alabamaCrimson"
                   }
                 >
                   Blog
@@ -179,7 +179,7 @@ const Navbar = () => {
                   className={
                     isActive
                       ? "bg-alabamaCrimson px-4 py-2 rounded-md cursor-pointer"
-                      : "px-4 py-2 rounded-md cursor-pointer"
+                      : "px-4 py-2 rounded-md cursor-pointer hover:text-alabamaCrimson"
                   }
                 >
                   About
@@ -194,7 +194,7 @@ const Navbar = () => {
                   className={
                     isActive
                       ? "bg-alabamaCrimson px-4 py-2 rounded-md cursor-pointer"
-                      : "px-4 py-2 rounded-md cursor-pointer"
+                      : "px-4 py-2 rounded-md cursor-pointer hover:text-alabamaCrimson"
                   }
                 >
                   Contact
@@ -214,7 +214,7 @@ const Navbar = () => {
 
         {user && (
           <div
-            className="avatar tooltip tooltip-bottom tooltip-warning"
+            className="avatar tooltip tooltip-bottom tooltip-primary"
             data-tip={user && user?.displayName}
           >
             <div className="w-10 rounded-full">
