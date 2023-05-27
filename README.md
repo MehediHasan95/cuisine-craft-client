@@ -1,6 +1,6 @@
 "# b7a10-chef-recipe-hunter-client-side-MehediHasan95"
 
-## Cuisine Craft [`LIVE`](https://github.com/facebook/create-react-app)
+## Cuisine Craft [`LIVE`](https://cuisine-craft10.web.app/)
 
 Website features:
 
