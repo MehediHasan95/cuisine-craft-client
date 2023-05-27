@@ -2,7 +2,6 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowRight, faXmark } from "@fortawesome/free-solid-svg-icons";
 
 const RecipeModal = ({ data }) => {
-  console.log(data);
   return (
     <div>
       <input type="checkbox" id="my-modal" className="modal-toggle" />

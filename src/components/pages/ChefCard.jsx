@@ -4,6 +4,7 @@ import {
   faUtensils,
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import LazyLoad from "react-lazy-load";
 import { Link } from "react-router-dom";
 
 const ChefCard = ({ chefInfo }) => {
@@ -11,9 +12,16 @@ const ChefCard = ({ chefInfo }) => {
 
   return (
     <div key={id} className="bg-base-100 overflow-hidden rounded-md">
-      <div className="h-96">
-        <img src={image} alt="profile" className="w-full h-full object-cover" />
-      </div>
+      <LazyLoad>
+        <div className="h-96">
+          <img
+            src={image}
+            alt="profile"
+            className="w-full h-full object-cover"
+          />
+        </div>
+      </LazyLoad>
+
       <div className="p-5">
         <h1 className="text-xl font-bold text-alabamaCrimson">{name}</h1>
         <p className="my-5">
@@ -30,17 +38,11 @@ const ChefCard = ({ chefInfo }) => {
             <span className="mx-2 text-alabamaCrimson">Recipes:</span>
             <span>{number_of_recipes} (items)</span>
           </div>
-          <div>
-            <span className="me-2 text-alabamaCrimson">
-              <FontAwesomeIcon icon={faHeart} className="me-1 cursor-pointer" />
-              Favorite
-            </span>
 
-            <span className="text-alabamaCrimson">
-              {likes.length > 4 ? `${likes.slice(0, 2)}K` : likes}
-              <FontAwesomeIcon icon={faThumbsUp} className="ms-1" />
-            </span>
-          </div>
+          <span className="text-alabamaCrimson">
+            {likes.length > 4 ? `${likes.slice(0, 2)}K` : likes}
+            <FontAwesomeIcon icon={faThumbsUp} className="ms-1" />
+          </span>
         </div>
       </div>
       <Link to={`/v1/chefdetails/${id}`}>

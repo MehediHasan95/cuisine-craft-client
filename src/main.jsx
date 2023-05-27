@@ -7,13 +7,16 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import "@smastrom/react-rating/style.css";
 import ChefDataProvider from "./provider/ChefDataProvider.jsx";
+import ThemesProvider from "./provider/ThemesProvider.jsx";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
-    <AuthProvider>
-      <ChefDataProvider>
-        <App />
-      </ChefDataProvider>
-    </AuthProvider>
+    <ThemesProvider>
+      <AuthProvider>
+        <ChefDataProvider>
+          <App />
+        </ChefDataProvider>
+      </AuthProvider>
+    </ThemesProvider>
   </React.StrictMode>
 );

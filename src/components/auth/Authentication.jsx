@@ -7,17 +7,20 @@ import google from "../../assets/google.png";
 import github from "../../assets/github.png";
 import { AuthContext } from "../../provider/AuthProvider";
 import { Oval } from "react-loader-spinner";
+import { toast } from "react-hot-toast";
 
 const Authentication = () => {
   const {
     signInWithGoogle,
     signInWithGithub,
     createUser,
-    updateUserDisplayName,
+    updateUserProfile,
     userSignIn,
+    resetPassword,
   } = useContext(AuthContext);
   const [toggle, setToggle] = useState(false);
   const [showPass, setShowPass] = useState(false);
+  const [resetPass, setResetPass] = useState(false);
   const [errMsg, setErrMsg] = useState("");
   const [loader, setLoader] = useState(false);
 
@@ -52,7 +55,7 @@ const Authentication = () => {
     if (displayName && photoURL) {
       createUser(email, password)
         .then(() => {
-          updateUserDisplayName(displayName, photoURL)
+          updateUserProfile(displayName, photoURL)
             .then(() => {
               navigate(from, { replace: true });
               setLoader(false);
@@ -66,7 +69,7 @@ const Authentication = () => {
           setErrMsg(error.code);
           setLoader(false);
         });
-    } else {
+    } else if ((email, password)) {
       userSignIn(email, password)
         .then(() => {
           navigate(from, { replace: true });
@@ -76,6 +79,17 @@ const Authentication = () => {
           setErrMsg(error.code);
           setLoader(false);
         });
+    } else {
+      resetPassword(email)
+        .then(() => {
+          toast.success("We have emailed you password reset link");
+          setLoader(false);
+        })
+        .catch((error) => {
+          setErrMsg(error.code);
+          setLoader(false);
+        });
+      console.log("reset");
     }
   };
 
@@ -93,15 +107,19 @@ const Authentication = () => {
             </span>
           </Link>
 
-          {toggle && (
-            <input
-              type="text"
-              pattern="[a-z A-Z]{0,}"
-              ref={displayNameField}
-              className="w-full p-3 mb-2 rounded-md border-none outline-none focus:outline-alabamaCrimson bg-base-300"
-              placeholder="Name"
-              required
-            />
+          {resetPass || (
+            <>
+              {toggle && (
+                <input
+                  type="text"
+                  pattern="[a-z A-Z]{0,}"
+                  ref={displayNameField}
+                  className="w-full p-3 mb-2 rounded-md border-none outline-none focus:outline-alabamaCrimson bg-base-300"
+                  placeholder="Name"
+                  required
+                />
+              )}
+            </>
           )}
           <input
             type="email"
@@ -111,21 +129,35 @@ const Authentication = () => {
             placeholder="Email ID"
             required
           />
-          <div className="relative">
-            <input
-              type={showPass ? "text" : "password"}
-              pattern="[a-zA-Z0-9]{6,}"
-              ref={paasswordField}
-              className="w-full p-3 mb-2 rounded-md border-none outline-none focus:outline-alabamaCrimson bg-base-300"
-              placeholder="Password"
-              required
-            />
-            <FontAwesomeIcon
-              onClick={() => setShowPass(!showPass)}
-              icon={showPass ? faEye : faEyeSlash}
-              className="text-xl absolute top-3 right-3 cursor-pointer text-alabamaCrimson"
-            />
-          </div>
+          {resetPass || (
+            <div className="relative">
+              <input
+                type={showPass ? "text" : "password"}
+                pattern="[a-zA-Z0-9]{6,}"
+                ref={paasswordField}
+                className="w-full p-3 mb-2 rounded-md border-none outline-none focus:outline-alabamaCrimson bg-base-300"
+                placeholder="Password"
+                required
+              />
+              <FontAwesomeIcon
+                onClick={() => setShowPass(!showPass)}
+                icon={showPass ? faEye : faEyeSlash}
+                className="text-xl absolute top-3 right-3 cursor-pointer text-alabamaCrimson"
+              />
+            </div>
+          )}
+          {resetPass || (
+            <>
+              {toggle || (
+                <button
+                  onClick={() => setResetPass(!resetPass)}
+                  className="mb-2 text-xs hover:underline hover:text-alabamaCrimson"
+                >
+                  Forgot password
+                </button>
+              )}
+            </>
+          )}
           {toggle && (
             <input
               type="text"
@@ -165,39 +197,66 @@ const Authentication = () => {
                     strokeWidthSecondary={4}
                   />
                 ) : (
-                  "Login"
+                  <>{resetPass ? "Forgot Password" : "Login"}</>
                 )}
               </>
             )}
           </button>
           <p className="text-center my-5 text-red-500">{errMsg}</p>
         </form>
-        <p className="text-center my-5">
-          {toggle ? "Already have an account" : "Don't have an account"}
+        {resetPass && (
           <button
-            onClick={() => setToggle(!toggle)}
-            className="ms-2 text-alabamaCrimson underline hover:font-bold"
+            onClick={() => setResetPass(!resetPass)}
+            className="text-alabamaCrimson w-full p-3 hover:underline"
           >
-            {toggle ? "Login" : "Register"}
+            Back
           </button>
-        </p>
-        <p className="text-center my-3 text-gray-400">- or continue with -</p>
-        <div className="flex justify-center">
-          <button
-            onClick={handleGoogleSignIn}
-            className="hover:bg-base-300 p-2 rounded-md flex items-center mx-3"
-          >
-            <img src={google} alt="google" className="w-8 me-2" />
-            <span>Google</span>
-          </button>
-          <button
-            onClick={handleGithubSignIn}
-            className="hover:bg-base-300 p-2 rounded-md flex items-center mx-3"
-          >
-            <img src={github} alt="github" className="w-8 me-2" />
-            <span>Github</span>
-          </button>
-        </div>
+        )}
+        {resetPass || (
+          <p className="text-center my-5">
+            {toggle ? "Already have an account" : "Don't have an account"}
+            <button
+              onClick={() => setToggle(!toggle)}
+              className="ms-2 text-alabamaCrimson underline hover:font-bold"
+            >
+              {toggle ? "Login" : "Register"}
+            </button>
+          </p>
+        )}
+        {resetPass || (
+          <>
+            {toggle || (
+              <div className="flex justify-center items-center text-gray-500 my-3">
+                <hr className="w-3/12 border-gray-500" />
+                <span className="mx-5">or continue with</span>
+                <hr className="w-3/12 border-gray-500" />
+              </div>
+            )}
+          </>
+        )}
+
+        {resetPass || (
+          <>
+            {toggle || (
+              <div className="flex justify-center">
+                <button
+                  onClick={handleGoogleSignIn}
+                  className="hover:bg-base-300 p-2 rounded-md flex items-center mx-3"
+                >
+                  <img src={google} alt="google" className="w-8 me-2" />
+                  <span>Google</span>
+                </button>
+                <button
+                  onClick={handleGithubSignIn}
+                  className="hover:bg-base-300 p-2 rounded-md flex items-center mx-3"
+                >
+                  <img src={github} alt="github" className="w-8 me-2" />
+                  <span>Github</span>
+                </button>
+              </div>
+            )}
+          </>
+        )}
       </div>
     </div>
   );

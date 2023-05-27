@@ -3,10 +3,15 @@ import logo from "../../assets/logo.png";
 import { useContext } from "react";
 import { AuthContext } from "../../provider/AuthProvider";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faSignOut, faSun } from "@fortawesome/free-solid-svg-icons";
+import { faMoon, faSignOut, faSun } from "@fortawesome/free-solid-svg-icons";
+import { ThemesContext } from "../../provider/ThemesProvider";
+import { useState } from "react";
+import { useEffect } from "react";
 
 const Navbar = () => {
   const { user, logOut } = useContext(AuthContext);
+  const { themes, setThemes } = useContext(ThemesContext);
+  const [toggle, setToggle] = useState(false);
   const navigate = useNavigate();
   const location = useLocation();
 
@@ -17,6 +22,14 @@ const Navbar = () => {
       navigate(from, { replace: true });
     });
   };
+
+  useEffect(() => {
+    if (toggle) {
+      setThemes("light");
+    } else {
+      setThemes("dark");
+    }
+  }, [setThemes, toggle]);
 
   return (
     <div className="navbar bg-erieBlack text-white lg:px-72">
@@ -142,6 +155,23 @@ const Navbar = () => {
               )}
             </NavLink>
           </li>
+          {user && (
+            <li>
+              <NavLink to="/profile">
+                {({ isActive }) => (
+                  <span
+                    className={
+                      isActive
+                        ? "bg-alabamaCrimson px-4 py-2 rounded-md cursor-pointer"
+                        : "px-4 py-2 rounded-md cursor-pointer hover:text-alabamaCrimson"
+                    }
+                  >
+                    Profile
+                  </span>
+                )}
+              </NavLink>
+            </li>
+          )}
           <li>
             <NavLink to="/allchef">
               {({ isActive }) => (
@@ -207,7 +237,8 @@ const Navbar = () => {
       <div className="navbar-end uppercase">
         <p>
           <FontAwesomeIcon
-            icon={faSun}
+            onClick={() => setToggle(!toggle)}
+            icon={toggle ? faMoon : faSun}
             className="text-xl cursor-pointer me-5"
           />
         </p>

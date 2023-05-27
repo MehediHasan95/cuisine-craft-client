@@ -10,6 +10,10 @@ import {
 import { faHeart as regularHeart } from "@fortawesome/free-regular-svg-icons";
 import RecipeModal from "../utilities/RecipeModal";
 import { useState } from "react";
+import { toast } from "react-hot-toast";
+import LazyLoad from "react-lazy-load";
+import { addToDb, getBookMarkRecipes } from "../utilities/localStorage";
+import { useEffect } from "react";
 
 const ChefDetails = () => {
   const { name, image, bio, experience, likes, number_of_recipes, recipes } =
@@ -17,16 +21,48 @@ const ChefDetails = () => {
   const [data, setData] = useState({});
   const [isBookMark, setIsBookMark] = useState(false);
 
+  const [bookMark, setBookMark] = useState([]);
+
+  useEffect(() => {
+    const bookMark = getBookMarkRecipes();
+    const recipe = [];
+    for (const element in bookMark) {
+      recipe.push(element);
+    }
+    setBookMark(recipe);
+  }, []);
+
+  useEffect(() => {
+    const storeRecipres = getBookMarkRecipes();
+    const saveRecipes = [];
+    for (const id in storeRecipres) {
+      const addedRecipes = recipes.find((e) => e.id === id);
+      if (addedRecipes) {
+        saveRecipes.push(addedRecipes);
+      }
+    }
+    setBookMark(saveRecipes);
+  }, [recipes]);
+
+  const handleBookMark = (recipes) => {
+    setBookMark([...bookMark, recipes]);
+    addToDb(recipes.id);
+  };
+
+  console.log(bookMark);
+
   return (
     <div className="px-2 lg:px-72 my-10">
       <div className="grid lg:grid-cols-3 bg-base-100 rounded-md">
-        <div className="col-span-1 h-96 p-5">
-          <img
-            src={image}
-            alt="profile"
-            className="w-full h-full object-cover rounded-md"
-          />
-        </div>
+        <LazyLoad>
+          <div className="col-span-1 h-96 p-5">
+            <img
+              src={image}
+              alt="profile"
+              className="w-full h-full object-cover rounded-md"
+            />
+          </div>
+        </LazyLoad>
         <div className="lg:col-span-2 p-5">
           <h1 className="text-4xl uppercase font-bold text-alabamaCrimson">
             {name}
@@ -38,24 +74,18 @@ const ChefDetails = () => {
             </span>
             {experience}
           </p>
-          <div>
+
+          <div className="flex justify-between items-center">
             <p>
               <span className="text-alabamaCrimson me-2 font-bold">
                 Number of Recipes:
               </span>
               {number_of_recipes} (Items)
             </p>
-            <div className="flex justify-between text-5xl mt-20">
+            <div className="flex justify-between text-3xl">
               <p className="text-alabamaCrimson">
                 <FontAwesomeIcon icon={faThumbsUp} />
                 {likes.length > 4 ? `${likes.slice(0, 2)}K` : likes}{" "}
-              </p>
-              <p>
-                <FontAwesomeIcon
-                  onClick={() => setIsBookMark(!isBookMark)}
-                  icon={isBookMark ? faHeart : regularHeart}
-                  className="cursor-pointer text-alabamaCrimson"
-                />
               </p>
             </div>
           </div>
@@ -66,22 +96,47 @@ const ChefDetails = () => {
         <h1 className="my-3 text-alabamaCrimson font-bold">My Recipes</h1>
 
         <div className="grid gap-5 lg:grid-cols-4">
-          {recipes.map((e, index) => (
+          {recipes.map((e) => (
             <div
-              key={index}
+              key={e.id}
               className="col-span-1 bg-base-100 p-8 text-center rounded-md"
             >
               <img src={cooking} alt="cooking" className="w-24 mx-auto" />
               <h1 className="my-3 font-bold">{e.name}</h1>
-              <p className="text-xs">Rating ({e.rating})</p>
-              <Rating
-                style={{
-                  maxWidth: 80,
-                  margin: "0 auto",
-                }}
-                readOnly
-                value={e.rating}
-              />
+
+              <div className="flex justify-between items-center">
+                <div>
+                  <p className="text-left text-xs">Rating ({e.rating})</p>
+                  <Rating
+                    style={{
+                      maxWidth: 80,
+                    }}
+                    readOnly
+                    value={e.rating}
+                  />
+                </div>
+
+                <button
+                  className={
+                    isBookMark
+                      ? "btn-disabled bg-transparent"
+                      : "bg-transparent"
+                  }
+                  tabindex="-1"
+                  role="button"
+                  aria-disabled="true"
+                >
+                  <FontAwesomeIcon
+                    onClick={() => {
+                      handleBookMark(e);
+                      setIsBookMark(!isBookMark);
+                      toast.success("Add to favorite");
+                    }}
+                    icon={isBookMark ? faHeart : regularHeart}
+                    className="cursor-pointer text-alabamaCrimson text-xl"
+                  />
+                </button>
+              </div>
               <label
                 onClick={() => setData(e)}
                 htmlFor="my-modal"

@@ -3,9 +3,11 @@ import {
   GoogleAuthProvider,
   createUserWithEmailAndPassword,
   onAuthStateChanged,
+  sendPasswordResetEmail,
   signInWithEmailAndPassword,
   signInWithPopup,
   signOut,
+  updateEmail,
   updateProfile,
 } from "firebase/auth";
 import { createContext, useEffect, useState } from "react";
@@ -39,14 +41,28 @@ const AuthProvider = ({ children }) => {
     return createUserWithEmailAndPassword(auth, email, password);
   };
   // Update user displayName method
-  const updateUserDisplayName = (displayName, photoURL) => {
+  const updateUserProfile = (displayName, photoURL) => {
+    setLoading(true);
     return updateProfile(auth.currentUser, { displayName, photoURL });
   };
 
-  // user sign in method
+  // Update user email method
+  const updateUserEmail = (email) => {
+    console.log(email);
+    setLoading(true);
+    return updateEmail(auth.currentUser, email);
+  };
+
+  // User sign in method
   const userSignIn = (email, pasasword) => {
     setLoading(true);
     return signInWithEmailAndPassword(auth, email, pasasword);
+  };
+
+  // Reset password method
+  const resetPassword = (email) => {
+    setLoading(true);
+    return sendPasswordResetEmail(auth, email);
   };
 
   // Sign Out method
@@ -59,7 +75,9 @@ const AuthProvider = ({ children }) => {
     signInWithGithub,
     createUser,
     userSignIn,
-    updateUserDisplayName,
+    updateUserProfile,
+    updateUserEmail,
+    resetPassword,
     logOut,
   };
   return <AuthContext.Provider value={dest}>{children}</AuthContext.Provider>;

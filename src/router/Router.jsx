@@ -9,6 +9,7 @@ import Authentication from "../components/auth/Authentication";
 import AllChef from "../components/pages/AllChef";
 import ChefDetails from "../components/pages/ChefDetails";
 import PrivateRouter from "./PrivateRouter";
+import Profile from "../components/pages/Profile";
 
 const router = createBrowserRouter([
   {
@@ -18,6 +19,10 @@ const router = createBrowserRouter([
       {
         path: "/",
         element: <Home />,
+      },
+      {
+        path: "profile",
+        element: <Profile />,
       },
       {
         path: "allchef",
@@ -31,7 +36,9 @@ const router = createBrowserRouter([
           </PrivateRouter>
         ),
         loader: ({ params }) =>
-          fetch(`http://localhost:5000/v1/chefdetails/${params.id}`),
+          fetch(
+            `https://b7a10-chef-recipe-hunter-server-side-mehedi-hasan-mehedihasan95.vercel.app/v1/chefdetails/${params.id}`
+          ),
       },
       {
         path: "blog",
