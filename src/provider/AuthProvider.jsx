@@ -20,11 +20,11 @@ const AuthProvider = ({ children }) => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    return () =>
-      onAuthStateChanged(auth, (currentUser) => {
-        setUser(currentUser);
-        setLoading(false);
-      });
+    const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
+      setUser(currentUser);
+      setLoading(false);
+    });
+    return () => unsubscribe();
   }, []);
 
   // Sign In with google
