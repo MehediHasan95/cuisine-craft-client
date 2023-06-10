@@ -10,6 +10,7 @@ import AllChef from "../components/pages/AllChef";
 import ChefDetails from "../components/pages/ChefDetails";
 import PrivateRouter from "./PrivateRouter";
 import Profile from "../components/pages/Profile";
+import BookMarkRecipes from "../components/pages/BookMarkRecipes";
 
 const router = createBrowserRouter([
   {
@@ -39,6 +40,10 @@ const router = createBrowserRouter([
           fetch(
             `https://b7a10-chef-recipe-hunter-server-side-mehedi-hasan-mehedihasan95.vercel.app/v1/chefdetails/${params.id}`
           ),
+      },
+      {
+        path: "favorite-recipes",
+        element: <BookMarkRecipes />,
       },
       {
         path: "blog",

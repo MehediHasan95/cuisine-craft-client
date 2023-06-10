@@ -1,4 +1,7 @@
+import useTitle from "../../hooks/useTitle";
+
 const About = () => {
+  useTitle("About");
   return (
     <div className="px-2 lg:px-72 my-10">
       <div className="min-h-[70vh] text-center">

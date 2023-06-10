@@ -1,7 +1,9 @@
 import { faHandPointRight } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import useTitle from "../../hooks/useTitle";
 
 const Blog = () => {
+  useTitle("Blog");
   const data = [
     {
       question:
@@ -46,8 +48,8 @@ const Blog = () => {
         <div key={index} className="p-5 rounded-md bg-base-100 mb-5">
           <h1 className="text-2xl font-bold">{e.question}</h1>
           <ul>
-            {e.answer.map((e) => (
-              <li>
+            {e.answer.map((e, index) => (
+              <li key={index}>
                 <FontAwesomeIcon
                   icon={faHandPointRight}
                   className="text-xs me-2"

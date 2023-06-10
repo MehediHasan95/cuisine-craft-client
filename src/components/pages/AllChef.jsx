@@ -1,8 +1,10 @@
 import { useContext } from "react";
 import { ChefContext } from "../../provider/ChefDataProvider";
 import ChefCard from "./ChefCard";
+import useTitle from "../../hooks/useTitle";
 
 const AllChef = () => {
+  useTitle("All Chef");
   const { chef } = useContext(ChefContext);
   return (
     <div className="px-2 lg:px-72 my-10">

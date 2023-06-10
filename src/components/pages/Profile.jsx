@@ -3,9 +3,11 @@ import { AuthContext } from "../../provider/AuthProvider";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEdit } from "@fortawesome/free-regular-svg-icons";
 import UpdateProfileModal from "../utilities/updateProfileModal";
+import useTitle from "../../hooks/useTitle";
 
 const Profile = () => {
   const { user } = useContext(AuthContext);
+  useTitle("Profile");
 
   return (
     <div className="px-2 lg:px-72 my-10">

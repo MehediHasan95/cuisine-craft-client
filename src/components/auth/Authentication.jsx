@@ -8,6 +8,7 @@ import github from "../../assets/github.png";
 import { AuthContext } from "../../provider/AuthProvider";
 import { Oval } from "react-loader-spinner";
 import { toast } from "react-hot-toast";
+import useTitle from "../../hooks/useTitle";
 
 const Authentication = () => {
   const {
@@ -23,6 +24,7 @@ const Authentication = () => {
   const [resetPass, setResetPass] = useState(false);
   const [errMsg, setErrMsg] = useState("");
   const [loader, setLoader] = useState(false);
+  useTitle("Authentication");
 
   const navigate = useNavigate();
   const location = useLocation();

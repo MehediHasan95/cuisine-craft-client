@@ -1,4 +1,7 @@
+import useTitle from "../../hooks/useTitle";
+
 const Contact = () => {
+  useTitle("Contact");
   return (
     <div className="px-2 lg:px-72 my-10">
       <div className="min-h-[70vh]">

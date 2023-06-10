@@ -9,4 +9,5 @@ Website features:
 - User can see the mexican master chef profile.
 - Also user can see the chef details information and recipes information.
 - User can get the recipes method by clicking "How to Make" button.
+- User can bookmark his/her favorite recipe.
 - User also can update his/her profile information.

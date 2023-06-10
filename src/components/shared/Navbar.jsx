@@ -3,14 +3,16 @@ import logo from "../../assets/logo.png";
 import { useContext } from "react";
 import { AuthContext } from "../../provider/AuthProvider";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faMoon, faSignOut, faSun } from "@fortawesome/free-solid-svg-icons";
+import { faHeart, faMoon, faSun } from "@fortawesome/free-solid-svg-icons";
 import { ThemesContext } from "../../provider/ThemesProvider";
 import { useState } from "react";
 import { useEffect } from "react";
+import useBookMark from "../../hooks/useBookMark";
 
 const Navbar = () => {
   const { user, logOut } = useContext(AuthContext);
-  const { themes, setThemes } = useContext(ThemesContext);
+  const { setThemes } = useContext(ThemesContext);
+  const [bookMark] = useBookMark();
   const [toggle, setToggle] = useState(false);
   const navigate = useNavigate();
   const location = useLocation();
@@ -235,6 +237,15 @@ const Navbar = () => {
         </ul>
       </div>
       <div className="navbar-end uppercase">
+        <Link to="/favorite-recipes">
+          <p className="cursor-pointer me-5 relative">
+            <FontAwesomeIcon icon={faHeart} className="text-xl" />
+            <sup className="absolute top-0 text-alabamaCrimson font-bold">
+              {bookMark.length}
+            </sup>
+          </p>
+        </Link>
+
         <p>
           <FontAwesomeIcon
             onClick={() => setToggle(!toggle)}

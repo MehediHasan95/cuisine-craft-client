@@ -12,44 +12,23 @@ import RecipeModal from "../utilities/RecipeModal";
 import { useState } from "react";
 import { toast } from "react-hot-toast";
 import LazyLoad from "react-lazy-load";
-import { addToDb, getBookMarkRecipes } from "../utilities/localStorage";
-import { useEffect } from "react";
+import { addToDb } from "../utilities/localStorage";
+import useTitle from "../../hooks/useTitle";
+import useBookMark from "../../hooks/useBookMark";
 
 const ChefDetails = () => {
   const { name, image, bio, experience, likes, number_of_recipes, recipes } =
     useLoaderData();
+
   const [data, setData] = useState({});
   const [isBookMark, setIsBookMark] = useState(false);
-
-  const [bookMark, setBookMark] = useState([]);
-
-  useEffect(() => {
-    const bookMark = getBookMarkRecipes();
-    const recipe = [];
-    for (const element in bookMark) {
-      recipe.push(element);
-    }
-    setBookMark(recipe);
-  }, []);
-
-  useEffect(() => {
-    const storeRecipres = getBookMarkRecipes();
-    const saveRecipes = [];
-    for (const id in storeRecipres) {
-      const addedRecipes = recipes.find((e) => e.id === id);
-      if (addedRecipes) {
-        saveRecipes.push(addedRecipes);
-      }
-    }
-    setBookMark(saveRecipes);
-  }, [recipes]);
+  const [bookMark, setBookMark] = useBookMark();
+  useTitle("Chef Details");
 
   const handleBookMark = (recipes) => {
     setBookMark([...bookMark, recipes]);
     addToDb(recipes.id);
   };
-
-  console.log(bookMark);
 
   return (
     <div className="px-2 lg:px-72 my-10">
@@ -122,7 +101,7 @@ const ChefDetails = () => {
                       ? "btn-disabled bg-transparent"
                       : "bg-transparent"
                   }
-                  tabindex="-1"
+                  tabIndex="-1"
                   role="button"
                   aria-disabled="true"
                 >
